@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  color: #777;
+  background-color: #FFF;
+}
+
+a {
+    color: #00adee;
+    text-decoration: none;
+}
+
+body .owl-carousel .owl-nav button{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  height: 100%;
+  top: 50%;
+  margin-top: -30px;
+  opacity: 1 !important;
+  outline: none !important;
+}
+
+body .owl-carousel .owl-nav button:hover{
+  background: none !important;
+}
+
+body .owl-carousel .owl-nav button span{
+  font-size: 120px;
+  color: #fff;
+  top: 0;
+  position: absolute;
+  margin-top: -70px;
+}
+
+body .featured_part .owl-carousel .item div{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  width: 90%;
+  max-width: 1050px;
+  height: 120px;
+  font-size: 40px;
+  line-height: 1;
+}
+
+body .owl-carousel .item div span{
+  display: block;
+  font-size: 70px;
+  text-transform: uppercase;
+}
+
+body .owl-carousel .owl-nav button.owl-next{
+  right: 0;
+}
+
+body .owl-carousel .owl-nav button.owl-next span{
+  left: 0;
+}
+
+body .owl-carousel .owl-nav button.owl-prev{
+  left: 0;
+}
+
+#services .owl-carousel .item{
+  padding-right: 20px;
+}

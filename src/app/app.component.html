@@ -1,20 +1,400 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="head-wrap">
+    <header>
+        <a href="https://www.atlconventioncenter.com?hsLang=en" class="logo"><img src="../assets/images/logo.svg" alt="Atlanta Convention Center"></a>
 
+        <a href="#" class="nav-toggle"><fa-icon [icon]="faBars"></fa-icon></a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#features-1" id="features-link">Features</a></li>
+            <li><a href="#floorplans-link">Floor Plans</a></li>
+            <li><a href="#services-link">Services</a></li>
+            <li><a href="#contact-link">Contact</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="featured_part">
+  <owl-carousel [options]="mySlideOptions" [items]="mySlideImages" [carouselClasses]="['owl-theme', 'sliding']" #homepageSlider>
+    <div class="item" *ngFor="let image of mySlideImages;let i = index">
+      <img src={{image.image}}/>
+      <div [innerHTML]="image.text"></div>
+    </div>
+  </owl-carousel>
+  <ul id="slideNavigation" class="content-nav">
+    <li *ngFor="let link of navTexts;let i = index">
+      <a href="#" data-slide="i" [ngClass]="{'active': currentSlide == i + 1}" (click)="gotoSlide(i)">{{link}}</a>
+    </li>
+  </ul>
+</div>
+<div class="content_part" id="default" [hidden]="currentSlide !== 0">
+  <section class="hero-vid">
+    <iframe src="https://www.youtube.com/embed/t8_1dYqDDrI" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen="" height="600"></iframe>
+  </section>
+
+  <section class="gallery">
+    <div *ngFor="let image of gallery_images1;let i = index" [ngStyle]="{'background-image': getImageURL(i)}">
+        <a href="{{image.small}}" class="cboxElement"></a>
+    </div>
+    <div style="clear:both; float: none"></div>
+  </section>
+
+  <section class="main">
+    <h1>Over 50 Years of Experience in Event Management</h1>
+    <owl-carousel [options]="mainOptions" [carouselClasses]="['owl-theme', 'sliding']" #mainContent>
+      <div>
+        <p>
+          Atlanta, a unique destination in the heart of the South, is also host to one of the most convenient and connected convention spaces. The Atlanta Convention Center at AmericasMart is the city’s best-value meetings, special events and tradeshow facility. Our team of experts has more than 50 years of experience in operating, managing, and providing solutions for events of any size. Come experience what being connected can do for you. <a href="#contact-link">Contact us today!</a>
+        </p>
+        <ul class="bottomLink">
+            <li><a class="youtube cboxElement" href="http://www.youtube.com/embed/t8_1dYqDDrI?rel=0&amp;wmode=transparent">Watch Video</a></li>
+            <li><a class="colorbox cboxElement" href="https://cdn2.hubspot.net/hubfs/3847898/_img/convention-center-connected-wheel.png">Features Overview</a></li>
+            <li><a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/ACCBrochure2012-1.pdf" target="_blank">Download Brochure PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="contentList">
+          <li><strong>Stay in the middle of all the action</strong> with 1,100 Westin and 206 Hotel Indigo hotel rooms on site to reenergize and relax in after an exciting day of your event.</li>
+          <li>Design your event any way you want with our 500,000 square feet of space, <strong>100,000 square feet of contiguous space</strong> and over 45 breakout rooms.</li>
+          <li>Explore <strong>abundant dining, hotel and entertainment options</strong> like Centennial Olympic Park and the World of Coca-Cola, just steps from our campus.</li>
+          <li>Enjoy exclusive access to AmericasMart’s wholesale apparel and accessories for <strong>VIP shopping</strong> before or after your event.</li>
+          <li><strong>Bring your suppliers with you or use our in-house team</strong> for all of your needs—you have the freedom and flexibility to choose.</li>
+        </ul>
+      </div>
+    </owl-carousel>
+  </section>
+  <div class="fullWidthborder"></div>
+</div>
+<div id="content-1" class="content" [hidden]="currentSlide !== 1">
+  <section class="gallery">
+    <div *ngFor="let image of gallery_images2;let i = index" [ngStyle]="{'background-image': getImage1URL(i)}">
+        <a href="{{image.small}}" class="cboxElement"></a>
+    </div>
+    <div style="clear:both; float: none"></div>
+  </section>
+  <section class="main">
+    <h1>We Make Great Meetings Easy</h1>
+    <owl-carousel [options]="mainOptions" [carouselClasses]="['owl-theme', 'sliding']" #mainContent1>
+      <div>
+        <p>Flexible meeting space, direct rapid transit (including to/from airport) and a location in the heart of the city are just a few of the many advantages that come with being such an accessible convention center. We’re connected to it all; <a href="#contact-link">your meeting will be too!</a>
+        </p>
+        <ul class="bottomLink">
+          <li><a class="youtube cboxElement" href="http://www.youtube.com/embed/t8_1dYqDDrI?rel=0&amp;wmode=transparent">Watch Video</a></li>
+          <li><a class="colorbox cboxElement" href="https://cdn2.hubspot.net/hubfs/3847898/_img/convention-center-connected-wheel.png">Features Overview</a></li>
+          <li><a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/ACCBrochure2012-1.pdf" target="_blank">Download Brochure PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="contentList">
+          <li><strong>Unique and flexible facilities</strong> with 500,000 square feet of space, 100,000 square feet of contiguous space, <strong><a href="#floorplans-link">47 breakout rooms</a></strong>, Gourmet Demonstration Kitchen, Penthouse Theater, 14-Story Atrium</li>
+          <li>Connected to <strong>Westin Peachtree Plaza Hotel</strong> (1,100 rooms) and <strong>Hotel Indigo</strong> (206 rooms)</li>
+          <li><strong>Centrally located</strong> – Easy to walk to restaurants, hotels and major attractions</li>
+          <li>Non-exclusive vendors – <strong>Bring your own partners</strong> if you wish</li>
+          <li>Complimentary access to wholesale <strong>VIP shopping &amp; free WiFi</strong></li>
+          <li><strong>Rapid rail</strong> to/from Hartsfield-Jackson International Airport</li>
+          <li>Covered parking – <strong>Direct access from transportation</strong> to hotel to meeting</li>
+        </ul>
+      </div>
+    </owl-carousel>
+  </section>
+</div>
+<div id="content-2" class="content" [hidden]="currentSlide !== 2">
+  <section class="gallery">
+    <div *ngFor="let image of gallery_images3;let i = index" [ngStyle]="{'background-image': getImage2URL(i)}">
+        <a href="{{image.small}}" class="cboxElement"></a>
+    </div>
+    <div style="clear:both; float: none"></div>
+  </section>
+  <section class="main">
+      <h1>You Plan It, We’ll Create It </h1>
+      <owl-carousel [options]="mainOptions" [carouselClasses]="['owl-theme', 'sliding']" #mainContent2>
+        <div>
+          <p>Whatever your vision, we can help you realize it. At the Atlanta Convention Center at AmericasMart, we guarantee an excellent value on unique facilities that can be transformed to accommodate any need. With capacity for 3,000 or more attendees, we can create the perfect setting for any size event.
+          </p>
+          <ul class="bottomLink">
+            <li><a class="youtube cboxElement" href="http://www.youtube.com/embed/t8_1dYqDDrI?rel=0&amp;wmode=transparent">Watch Video</a></li>
+            <li><a class="colorbox cboxElement" href="https://cdn2.hubspot.net/hubfs/3847898/_img/convention-center-connected-wheel.png">Features Overview</a></li>
+            <li><a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/ACCBrochure2012-1.pdf" target="_blank">Download Brochure PDF</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="contentList">
+            <li>Unique and flexible space <strong>for 3,000 or more attendees</strong></li>
+            <li><strong>Rapid rail</strong> to/from Hartsfield-Jackson International Airport</li>
+            <li>Covered parking – <strong>Direct access from transportation</strong> to hotel to event</li>
+            <li>Gourmet Demonstration Kitchen, Penthouse Theater, 14-Story Atrium</li>
+            <li><strong>Centrally located</strong> – Easy to walk to restaurants, hotels and major attractions</li>
+            <li>Non-exclusive vendors – <strong>Bring your own partners</strong> if you wish</li>
+            <li>Complimentary access to wholesale <strong>VIP shopping &amp; free WiFi</strong></li>
+            <li>Connected to <strong>Westin Peachtree Plaza Hotel</strong> (1,100 rooms) and <strong>Hotel Indigo</strong> (206 rooms)</li>
+          </ul>
+        </div>
+      </owl-carousel>
+  </section>
+</div>
+<div id="content-3" class="content" [hidden]="currentSlide !== 3">
+  <section class="gallery">
+    <div *ngFor="let image of gallery_images4;let i = index" [ngStyle]="{'background-image': getImage3URL(i)}">
+        <a href="{{image.small}}" class="cboxElement"></a>
+    </div>
+    <div style="clear:both; float: none"></div>
+  </section>
+  <section class="main">
+    <h1>Expertise You Can Count On</h1>
+    <owl-carousel [options]="mainOptions" [carouselClasses]="['owl-theme', 'sliding']" #mainContent3>
+      <div>
+        <p>We know tradeshows! With over 50 years of experience—including operating 23 tradeshows a year at one of the world’s largest wholesale marketplaces—we’re industry experts in anticipating and delivering solutions that address the needs of each convention and tradeshow planner.
+        </p>
+        <ul class="bottomLink">
+          <li><a class="youtube cboxElement" href="http://www.youtube.com/embed/t8_1dYqDDrI?rel=0&amp;wmode=transparent">Watch Video</a></li>
+          <li><a class="colorbox cboxElement" href="https://cdn2.hubspot.net/hubfs/3847898/_img/convention-center-connected-wheel.png">Features Overview</a></li>
+          <li><a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/ACCBrochure2012-1.pdf" target="_blank">Download Brochure PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="contentList">
+          <li>An unmatched value – The area’s lowest square-foot price</li>
+          <li><strong>500,000 square feet of space</strong>, 100,000 square feet of contiguous space, <a href="#floorplans-link">47 breakout rooms</a></li>
+          <li>Connected to <strong>Westin Peachtree Plaza Hotel</strong> (1,100 rooms) and <strong>Hotel Indigo</strong> (206 rooms)</li>
+          <li>Non-exclusive vendors – <strong>Bring your own partners</strong> if you wish</li>
+          <li>Complimentary access to wholesale <strong>VIP shopping &amp; free WiFi</strong></li>
+          <li><strong>Centrally located</strong> – Easy to walk to restaurants, hotels and major attractions</li>
+          <li><strong>Rapid rail</strong> to/from Hartsfield-Jackson International Airport</li>
+          <li>Covered parking – <strong>Direct access from transportation</strong> to hotel to convention</li>
+        </ul>
+      </div>
+    </owl-carousel>
+  </section>
+</div>
+<div class="footer">
+  <section id="floorplans">
+    <h3>Search Floorplans</h3>
+    <div class="filter">
+      <div class="ng-scope">
+        <div class="attr">
+          <label>Filter By</label>
+          <select id="filterAttr" ng-model="attr" class="ng-pristine ng-valid">
+            <option value="">Please select..</option>
+            <option value="Theatre">Theatre</option>
+            <option value="Classroom (2/Table)">Classroom (2/Table)</option>
+            <option value="Classroom (3/Table)">Classroom (3/Table)</option>
+            <option value="Banquet">Banquet</option>
+            <option value="Sq Footage">Square Foot</option>
+          </select>
+        </div>
+        <div class="val">
+          <label>Minimum</label>
+          <input type="text" id="filterValue" ng-model="value" class="ng-pristine ng-valid">
+        </div>
+        <a (click)="reset()" class="desktop-only">Reset filter</a>
+      </div>
+      <a class="search-btn desktop-only" href="#search"><img src="https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=30&amp;height=30&amp;name=search_btn.png" width="30" height="30" srcset="https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=15&amp;height=15&amp;name=search_btn.png 15w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=30&amp;height=30&amp;name=search_btn.png 30w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=45&amp;height=45&amp;name=search_btn.png 45w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=60&amp;height=60&amp;name=search_btn.png 60w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=75&amp;height=75&amp;name=search_btn.png 75w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=90&amp;height=90&amp;name=search_btn.png 90w" sizes="(max-width: 30px) 100vw, 30px"></a>
+      <br style="clear:both;">
+    </div>
+    <div class="results-wrapper">
+      <table class="buildings-header desktop-only">
+        <tbody>
+          <tr>
+            <td>
+                <span>Building</span> <div class="icon-building1-num color-building1">1</div>
+            </td>
+            <td>
+                <span>Building</span> <div class="icon-building2-num color-building2">2</div>
+            </td>
+            <td>
+                <span>Building</span> <div class="icon-building3-num color-building3"><label>3</label></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="buildings-container ng-scope">
+        <table class="buildings desktop-only">
+          <tbody>
+            <tr>
+              <td colspan="4"></td>
+              <td class="floor">
+                  <div class="building-3" ng-click="showFloorplan('Building 3 Floor 15')" ng-class="{misfits: !availableFloors['Building 3 Floor 15']}">
+                      <div class="number">15</div>
+                      <div class="description single">Penthouse Ballroom</div>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td class="floor">
+                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 4')" ng-class="{misfits: !availableFloors['Building 2 Floor 4']}">
+                      <div class="number">4</div>
+                      <div class="description">Exhibit Hall /
+                          <br>Meeting Rooms</div>
+                  </div>
+              </td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td class="floor">
+                  <div class="building-1" ng-click="showFloorplan('Building 1 Floor 2')" ng-class="{misfits: !availableFloors['Building 1 Floor 2']}">
+                      <div class="number">2</div>
+                      <div class="description single">Exhibit Hall</div>
+                  </div>
+              </td>
+              <td class="path"><fa-icon [icon]="faWalking" size="2x"></fa-icon></td>
+              <td class="floor">
+                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 3')" ng-class="{misfits: !availableFloors['Building 2 Floor 3']}">
+                      <div class="number">3</div>
+                      <div class="description">Exhibit Hall /
+                          <br>Meeting Rooms</div>
+                  </div>
+              </td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td class="floor">
+                  <div class="building-1" ng-click="showFloorplan('Building 1 Floor 1')" ng-class="{misfits: !availableFloors['Building 1 Floor 1']}">
+                      <div class="number">1</div>
+                      <div class="description">Exhibit Hall /
+                          <br>Meeting Rooms</div>
+                  </div>
+              </td>
+              <td class="path"><fa-icon [icon]="faWalking" size="2x"></fa-icon></td>
+              <td class="floor">
+                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 2')" ng-class="{misfits: !availableFloors['Building 2 Floor 2']}">
+                      <div class="number">2</div>
+                      <div class="description single">Exhibit Hall</div>
+                  </div>
+              </td>
+              <td class="path"><fa-icon [icon]="faWalking" size="2x"></fa-icon></td>
+              <td class="floor">
+                  <div class="building-3" ng-click="showFloorplan('Building 3 Floor 2')" ng-class="{misfits: !availableFloors['Building 3 Floor 2']}">
+                      <div class="number">2</div>
+                      <div class="description single">Atrium</div>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td class="floor">
+                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 1')" ng-class="{misfits: !availableFloors['Building 2 Floor 1']}">
+                      <div class="number">1</div>
+                      <div class="description single">Exhibit Hall</div>
+                  </div>
+              </td>
+              <td></td>
+              <td class="floor">
+                  <div class="building-3" ng-click="showFloorplan('Building 3 Floor 1')" ng-class="{misfits: !availableFloors['Building 3 Floor 1']}">
+                      <div class="number">1</div>
+                      <div class="description single">Exhibit Hall</div>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="prompt" ng-show="!places.isListVisible">
+            <span>Select a space for more information.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="quote-wrap">
+    <section>
+        <p class="quote lowercase"><span>“</span>We love the convenience and accessibility to everything and we value the relationship we've built with the collaborative management team.
+            <span>”</span></p>
+        <p class="author">- Pat Henry, President, Dragon Con</p>
+    </section>
+  </div>
+  <section id="services">
+    <h3>Services</h3>
+    <div class="desktop-only">
+      <div>
+          <p class="lead">We make it easy for your event to be successful—we welcome you to <strong>bring any of your current vendor relationships</strong> along with you. If you don’t have a vendor for an area of need, we have an extensive list of suppliers we can recommend.</p>
+      </div>
+      <div>
+          <p style="color: #777;">We recommend several contractors that have served us for years with unmatched professionalism. If you plan to use a company that is not on our preferred list, please contact the convention staff. All contractors must have appropriate operating licenses and liability insurance for the State of Georgia.</p>
+      </div>
+      <div class="service-wrap">
+        <h4>Non-Exclusive Contractors</h4>
+        <div class="service">
+          <img src="https://www.atlconventioncenter.com/hubfs/_img/service-food.jpg" class="desktop-only" alt="Food and Beverage">
+          <h4>Food &amp; Beverage</h4>
+          <p>From small coffee breaks to large banquets, we will assist you with your food service requests.</p>
+          <p><strong>On-Site Food and Beverage Contractor:</strong>
+              <br> Classic Fare Catering</p>
+          <a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/ClassicFareCateringMenu.pdf" target="_blank">Full Service Menu PDF</a>
+        </div>
+        <div class="service">
+          <img src="https://www.atlconventioncenter.com/hubfs/_img/service-contractors.jpg" class="desktop-only" alt="Contractors">
+          <h4>Contractors</h4>
+          <p><strong>Service Contractor/Decorator:</strong>
+              <br> George Fern Company</p>
+          <p><strong>Audio/Visual:</strong>
+              <br> OnEvent Services, Inc.</p>
+          <p><strong>Security Contractor:</strong>
+              <br> AmericasMart Security</p>
+          <p><strong>Floral Contractor:</strong>
+              <br> TLC / Florist</p>
+        </div>
+      </div>
+      <div class="service-wrap">
+        <h4>Inclusive Contractors</h4>
+        <div class="service">
+          <img src="https://www.atlconventioncenter.com/hubfs/_img/service-wifi.jpg" class="desktop-only" alt="Technology Offerings">
+          <h4>Technology Offerings</h4>
+          <p>Atlanta Convention Center is fully connected with free attendee Wi-Fi on all floors. Custom wireless networks, dedicated Ethernet, and telephone services are all available to meet your needs. For more information, email <a href="mailto:helpdesk@americasmart.com">helpdesk@americasmart.com</a> or call 404.220.3003.</p>
+          <a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/tech-offerings.pdf" target="_blank">Order Technology Services PDF</a>
+        </div>
+        <div class="service">
+          <img src="https://www.atlconventioncenter.com/hubfs/_img/service-electrical.jpg" class="desktop-only" alt="Electrical">
+          <h4>Electrical</h4>
+          <p>All electrical work will be done by an in-house electrician and will meet applicable codes and standards. Please submit special requirements to our convention staff in advance.</p>
+          <a href="https://cdn2.hubspot.net/hubfs/3847898/_pdf/OUTSIDESHOWELECTRICALFORM.pdf" target="_blank">Order Electrical Services PDF</a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-only">
+      <owl-carousel [options]="serviceOptions" [items]="serviceItems" [carouselClasses]="['owl-theme', 'sliding']" #serviceSlider>
+        <div class="item" [innerHTML]="serviceItem" *ngFor="let serviceItem of serviceItems;let i = index">
+        </div>
+      </owl-carousel>
+    </div>
+    <div style="clear: both"></div>
+    <div class="service-logos">
+      <div *ngFor="let image of serviceLogos;let i = index" [ngStyle]="{'background-image': getServiceLogoURL(i)}"></div>
+    </div>
+  </section>
+  <div id="map_canvas">
+    <div #gmap style="width:100%;height:400px"></div>
+  </div>
+  <section id="contact" style="margin-bottom:0;padding-bottom:10px;">
+    <h3>Contact</h3>
+    <div>
+        <p class="lead">Our experienced staff are ready to address your event planning needs. Discover how smooth we can make your experience at the Atlanta Convention Center at AmericasMart.</p>
+        <p>We're ready to address your event planning needs.</p>
+    </div>
+    <div class="hubspot_form" id="contactform">
+    </div>
+    <div class="info">
+      <p>
+        <strong>Atlanta Convention Center
+        <br> at AmericasMart</strong>
+        <br> 240 Peachtree Street NW
+        <br> Suite 2200
+        <br> Atlanta, GA 30303
+        <br>
+        <a href="https://maps.google.com/maps?q=240+Peachtree+Street+Northwest,+Atlanta,+GA+30303+(AmericasMart+Atlanta)&amp;daddr=240+Peachtree+St+NW,+Atlanta,+GA+30303&amp;hl=en&amp;sll=33.760458,-84.387566&amp;sspn=0.001597,0.002411&amp;geocode=%3BCS1Vb8sEXyytFVpIAwId01f4-ikJwSfTegT1iDE3BYLUD6Qewg&amp;hnear=240+Peachtree+St+NW,+Atlanta,+Fulton,+Georgia+30303&amp;t=m&amp;z=14" target="_blank">Directions</a>
+      </p>
+      <ul class="contact-info">
+          <li><span><fa-icon [icon]="faMobile"></fa-icon></span> (888) 263-7456</li>
+          <li><span><fa-icon [icon]="faEnvelope"></fa-icon></span> <a href="mailto:sales@atlconventioncenter.com">sales@atlconventioncenter.com</a></li>
+          <li><span><fa-icon [icon]="faFileAlt"></fa-icon></span><a href="mailto:sales@atlconventioncenter.com">Send Your RFP</a></li>
+      </ul>
+      <ul class="social">
+        <li><a href="https://www.facebook.com/pages/Atlanta-Convention-Center-at-AmericasMart/155970467791370" target="_blank"><fa-icon [icon]="faFacebook"></fa-icon></a></li>
+        <li><a href="https://twitter.com/AmericasMartATL" target="_blank"><fa-icon [icon]="faTwitterSquare"></fa-icon></a></li>
+        <li><a href="https://plus.google.com/107649268445766581280/posts" target="_blank"><fa-icon [icon]="faGooglePlusSquare"></fa-icon></a></li>
+        <li><a href="http://www.linkedin.com/company/3173531?trk=vsrp_companies_cluster_name&amp;trkInfo=VSRPsearchId%3A123732561397487672902%2CVSRPtargetId%3A3173531%2CVSRPcmpt%3Acompanies_cluster" target="_blank"><fa-icon [icon]="faLinkedin"></fa-icon></a></li>
+      </ul>
+    </div>
+  </section>
+  <div style="clear:both"></div>
+</div>
