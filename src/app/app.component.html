@@ -1,20 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<ngp-lightbox></ngp-lightbox>
 <div class="head-wrap">
-    <header>
-        <a href="https://www.atlconventioncenter.com?hsLang=en" class="logo"><img src="../assets/images/logo.svg" alt="Atlanta Convention Center"></a>
+  <header>
+      <a href="https://www.atlconventioncenter.com?hsLang=en" class="logo"><img src="../assets/images/logo.svg" alt="Atlanta Convention Center"></a>
 
-        <a href="#" class="nav-toggle"><fa-icon [icon]="faBars"></fa-icon></a>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#features-1" id="features-link">Features</a></li>
-            <li><a href="#floorplans-link">Floor Plans</a></li>
-            <li><a href="#services-link">Services</a></li>
-            <li><a href="#contact-link">Contact</a></li>
-        </ul>
-    </nav>
+      <a href="#" class="nav-toggle"><fa-icon [icon]="faBars"></fa-icon></a>
+  </header>
+  <nav>
+      <ul>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#features-1" id="features-link">Features</a></li>
+          <li><a href="#floorplans-link">Floor Plans</a></li>
+          <li><a href="#services-link">Services</a></li>
+          <li><a href="#contact-link">Contact</a></li>
+      </ul>
+  </nav>
 </div>
 <div class="featured_part">
   <owl-carousel [options]="mySlideOptions" [items]="mySlideImages" [carouselClasses]="['owl-theme', 'sliding']" #homepageSlider>
@@ -35,9 +35,9 @@
   </section>
 
   <section class="gallery">
-    <div *ngFor="let image of gallery_images1;let i = index" [ngStyle]="{'background-image': getImageURL(i)}">
-        <a href="{{image.small}}" class="cboxElement"></a>
-    </div>
+    <ngp-gallery>
+      <ngp-gallery-item class="galleryImage" *ngFor="let image of galleryImage1;let i = index" [image]="image"></ngp-gallery-item>
+    </ngp-gallery>
     <div style="clear:both; float: none"></div>
   </section>
 
@@ -69,9 +69,9 @@
 </div>
 <div id="content-1" class="content" [hidden]="currentSlide !== 1">
   <section class="gallery">
-    <div *ngFor="let image of gallery_images2;let i = index" [ngStyle]="{'background-image': getImage1URL(i)}">
-        <a href="{{image.small}}" class="cboxElement"></a>
-    </div>
+    <ngp-gallery>
+      <ngp-gallery-item class="galleryImage" *ngFor="let image of galleryImage2;let i = index" [image]="image"></ngp-gallery-item>
+    </ngp-gallery>
     <div style="clear:both; float: none"></div>
   </section>
   <section class="main">
@@ -102,9 +102,9 @@
 </div>
 <div id="content-2" class="content" [hidden]="currentSlide !== 2">
   <section class="gallery">
-    <div *ngFor="let image of gallery_images3;let i = index" [ngStyle]="{'background-image': getImage2URL(i)}">
-        <a href="{{image.small}}" class="cboxElement"></a>
-    </div>
+    <ngp-gallery>
+      <ngp-gallery-item class="galleryImage" *ngFor="let image of galleryImage3;let i = index" [image]="image"></ngp-gallery-item>
+    </ngp-gallery>
     <div style="clear:both; float: none"></div>
   </section>
   <section class="main">
@@ -136,9 +136,9 @@
 </div>
 <div id="content-3" class="content" [hidden]="currentSlide !== 3">
   <section class="gallery">
-    <div *ngFor="let image of gallery_images4;let i = index" [ngStyle]="{'background-image': getImage3URL(i)}">
-        <a href="{{image.small}}" class="cboxElement"></a>
-    </div>
+    <ngp-gallery>
+      <ngp-gallery-item class="galleryImage" *ngFor="let image of galleryImage4;let i = index" [image]="image"></ngp-gallery-item>
+    </ngp-gallery>
     <div style="clear:both; float: none"></div>
   </section>
   <section class="main">
@@ -175,20 +175,20 @@
       <div class="ng-scope">
         <div class="attr">
           <label>Filter By</label>
-          <select id="filterAttr" ng-model="attr" class="ng-pristine ng-valid">
-            <option value="">Please select..</option>
+          <select id="filterAttr" [(ngModel)]="filterAttr" (ngModelChange)="filterRoomsByAttr($event)" class="ng-pristine ng-valid">
+            <option value="Select">Please select..</option>
             <option value="Theatre">Theatre</option>
-            <option value="Classroom (2/Table)">Classroom (2/Table)</option>
-            <option value="Classroom (3/Table)">Classroom (3/Table)</option>
+            <option value="Classroom2">Classroom (2/Table)</option>
+            <option value="Classroom3">Classroom (3/Table)</option>
             <option value="Banquet">Banquet</option>
-            <option value="Sq Footage">Square Foot</option>
+            <option value="Sq_Footage">Square Foot</option>
           </select>
         </div>
         <div class="val">
           <label>Minimum</label>
-          <input type="text" id="filterValue" ng-model="value" class="ng-pristine ng-valid">
+          <input type="text" id="filterValue" (ngModelChange)="filterRooms($event)" [(ngModel)]="filterValue" class="ng-pristine ng-valid">
         </div>
-        <a (click)="reset()" class="desktop-only">Reset filter</a>
+        <a (click)="resetFilter()" class="desktop-only">Reset filter</a>
       </div>
       <a class="search-btn desktop-only" href="#search"><img src="https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=30&amp;height=30&amp;name=search_btn.png" width="30" height="30" srcset="https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=15&amp;height=15&amp;name=search_btn.png 15w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=30&amp;height=30&amp;name=search_btn.png 30w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=45&amp;height=45&amp;name=search_btn.png 45w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=60&amp;height=60&amp;name=search_btn.png 60w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=75&amp;height=75&amp;name=search_btn.png 75w, https://www.atlconventioncenter.com/hs-fs/hubfs/_img/search_btn.png?width=90&amp;height=90&amp;name=search_btn.png 90w" sizes="(max-width: 30px) 100vw, 30px"></a>
       <br style="clear:both;">
@@ -215,7 +215,7 @@
             <tr>
               <td colspan="4"></td>
               <td class="floor">
-                  <div class="building-3" ng-click="showFloorplan('Building 3 Floor 15')" ng-class="{misfits: !availableFloors['Building 3 Floor 15']}">
+                  <div class="building-3" (click)="showFloorplan(3, 15)">
                       <div class="number">15</div>
                       <div class="description single">Penthouse Ballroom</div>
                   </div>
@@ -224,7 +224,7 @@
             <tr>
               <td colspan="2"></td>
               <td class="floor">
-                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 4')" ng-class="{misfits: !availableFloors['Building 2 Floor 4']}">
+                  <div class="building-2" (click)="showFloorplan(2, 4)">
                       <div class="number">4</div>
                       <div class="description">Exhibit Hall /
                           <br>Meeting Rooms</div>
@@ -234,14 +234,14 @@
             </tr>
             <tr>
               <td class="floor">
-                  <div class="building-1" ng-click="showFloorplan('Building 1 Floor 2')" ng-class="{misfits: !availableFloors['Building 1 Floor 2']}">
+                  <div class="building-1" (click)="showFloorplan(1, 2)">
                       <div class="number">2</div>
                       <div class="description single">Exhibit Hall</div>
                   </div>
               </td>
               <td class="path"><fa-icon [icon]="faWalking" size="2x"></fa-icon></td>
               <td class="floor">
-                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 3')" ng-class="{misfits: !availableFloors['Building 2 Floor 3']}">
+                  <div class="building-2" (click)="showFloorplan(2, 3)">
                       <div class="number">3</div>
                       <div class="description">Exhibit Hall /
                           <br>Meeting Rooms</div>
@@ -251,7 +251,7 @@
             </tr>
             <tr>
               <td class="floor">
-                  <div class="building-1" ng-click="showFloorplan('Building 1 Floor 1')" ng-class="{misfits: !availableFloors['Building 1 Floor 1']}">
+                  <div class="building-1" (click)="showFloorplan(1, 1)">
                       <div class="number">1</div>
                       <div class="description">Exhibit Hall /
                           <br>Meeting Rooms</div>
@@ -259,14 +259,14 @@
               </td>
               <td class="path"><fa-icon [icon]="faWalking" size="2x"></fa-icon></td>
               <td class="floor">
-                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 2')" ng-class="{misfits: !availableFloors['Building 2 Floor 2']}">
+                  <div class="building-2" (click)="showFloorplan(2, 2)">
                       <div class="number">2</div>
                       <div class="description single">Exhibit Hall</div>
                   </div>
               </td>
               <td class="path"><fa-icon [icon]="faWalking" size="2x"></fa-icon></td>
               <td class="floor">
-                  <div class="building-3" ng-click="showFloorplan('Building 3 Floor 2')" ng-class="{misfits: !availableFloors['Building 3 Floor 2']}">
+                  <div class="building-3" (click)="showFloorplan(3, 2)">
                       <div class="number">2</div>
                       <div class="description single">Atrium</div>
                   </div>
@@ -275,14 +275,14 @@
             <tr>
               <td colspan="2"></td>
               <td class="floor">
-                  <div class="building-2" ng-click="showFloorplan('Building 2 Floor 1')" ng-class="{misfits: !availableFloors['Building 2 Floor 1']}">
+                  <div class="building-2" (click)="showFloorplan(2, 1)">
                       <div class="number">1</div>
                       <div class="description single">Exhibit Hall</div>
                   </div>
               </td>
               <td></td>
               <td class="floor">
-                  <div class="building-3" ng-click="showFloorplan('Building 3 Floor 1')" ng-class="{misfits: !availableFloors['Building 3 Floor 1']}">
+                  <div class="building-3" (click)="showFloorplan(3, 1)">
                       <div class="number">1</div>
                       <div class="description single">Exhibit Hall</div>
                   </div>
@@ -290,9 +290,33 @@
             </tr>
           </tbody>
         </table>
-        <div class="prompt" ng-show="!places.isListVisible">
+        <div class="prompt" [hidden]="filteredData.length > 0">
             <span>Select a space for more information.</span>
         </div>
+        <table matSort (matSortChange)="sortData($event)" class="dataTable" [hidden]="filteredData.length == 0">
+          <thead>
+            <tr>
+              <th mat-sort-header="location">Location</th>
+              <th mat-sort-header="roomtype">Room Type</th>
+              <th mat-sort-header="theatre">Theatre</th>
+              <th mat-sort-header="classroom2">Classroom<br>(2/Table)</th>
+              <th mat-sort-header="classroom3">Classroom<br>(3/Table)</th>
+              <th mat-sort-header="banquet">Banquet</th>
+              <th mat-sort-header="size">Size<br>(Square Ft)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of sortedData;let i = index">
+              <td>Building {{data.building}} Floor {{data.floor}} {{data.desc}}</td>
+              <td>{{data.type}}</td>
+              <td>{{data.theatre == 0 ? '' : data.theatre}}</td>
+              <td>{{data.classroom2 == 0 ? '' : data.classroom2}}</td>
+              <td>{{data.classroom3 == 0 ? '' : data.classroom3}}</td>
+              <td>{{data.banquet == 0 ? '' : data.banquet}}</td>
+              <td>{{data.size == 0 ? '' : data.size}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -363,7 +387,9 @@
     </div>
   </section>
   <div id="map_canvas">
-    <div #gmap style="width:100%;height:400px"></div>
+    <agm-map [latitude]='33.753746' [longitude]='-84.386330'>
+      <agm-marker [latitude]='33.753746' [longitude]= '-84.386330'></agm-marker>
+    </agm-map>
   </div>
   <section id="contact" style="margin-bottom:0;padding-bottom:10px;">
     <h3>Contact</h3>

@@ -154,14 +154,6 @@ nav.expand a {
   background-position: center;
 }
 
-.gallery a {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0;
-  height: 200px;
-  width: 100%;
-}
-
 h1 {
   font-weight: 300;
   color: #00adee;
@@ -317,14 +309,29 @@ h3 {
     height: 42px;
 }
 
+#floorplans .buildings .building-1:hover{
+  background-color:#004693;
+  cursor: pointer;
+}
+
 #floorplans .buildings .building-2 {
     background-color: rgb(190, 1, 1);
     height: 42px;
 }
 
+#floorplans .buildings .building-2:hover{
+  background-color:#8b0101;
+  cursor: pointer;
+}
+
 #floorplans .buildings .building-3 {
     height: 42px;
     background-color: rgb(16, 127, 80);
+}
+
+#floorplans .buildings .building-3:hover{
+  background-color:#0a5233;
+  cursor: pointer;
 }
 
 #floorplans .buildings .floor .number {
@@ -444,6 +451,25 @@ p.lead {
   margin: 0 5px 0 0;
 }
 
+.dataTable {
+  width: 100%;
+  margin-top: 20px;
+  border-spacing: 0;
+}
+
+.dataTable thead tr th{
+  text-align: left;
+  padding: 5px;
+}
+
+.dataTable tbody tr td{
+  padding: 5px;
+}
+
+.dataTable tbody tr:nth-of-type(2n+1){
+  background: #eee;
+}
+
 @media (min-width: 975px) {
   header {
     padding: 20px 0 20px 30px;
@@ -490,34 +516,24 @@ p.lead {
       width: 102% !important;
   }
 
-  .gallery div:nth-child(3n+1) {
+  .gallery .galleryImage:nth-child(3n+1) {
     clear: left;
   }
 
-  .gallery div:nth-child(3n) {
+  .gallery .galleryImage:nth-child(3n) {
     margin-right: 0;
   }
 
-  .gallery div {
+  .gallery .galleryImage{
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 31.76157%;
+    margin-top: 15px;
   }
 
-  .gallery div:nth-child(7), .gallery div:nth-child(8) {
+  .gallery .galleryImage:nth-child(7), .gallery .galleryImage:nth-child(8) {
     display: none;
-  }
-
-  .gallery a {
-    background-size: cover;
-    background-position: center;
-    display: block;
-    overflow: hidden;
-    padding-bottom: 0;
-    height: 91px;
-    width: 100%;
-    position: relative;
   }
 
   #floorplans .filter div.attr, #floorplans .filter div .val {
@@ -561,18 +577,19 @@ p.lead {
     margin-right: auto;
   }
 
-  .gallery div {
+  .gallery .galleryImage {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 23.23176%;
+    margin-bottom: 15px;
   }
 
-  .gallery div:nth-child(4n+1) {
+  .gallery .galleryImage:nth-child(4n+1) {
     clear: left;
   }
 
-  .gallery div:nth-child(4n) {
+  .gallery .galleryImage:nth-child(4n) {
     margin-right: 0;
   }
 

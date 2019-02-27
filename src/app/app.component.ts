@@ -9,9 +9,21 @@ import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faGooglePlusSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {OwlCarousel} from 'ngx-owl-carousel';
-import { } from '@types/googlemaps';
+import { Image } from 'angular2_photoswipe';
+import {Sort} from '@angular/material';
 import * as $ from 'jquery';
 
+export interface Room {
+  building: number,
+  floor: number,
+  desc: string,
+  type: string,
+  theatre: number,
+  classroom2: number,
+  classroom3: number,
+  banquet: number,
+  size: number,
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,8 +36,14 @@ export class AppComponent {
   @ViewChild('mainContent2') mainContent2: OwlCarousel
   @ViewChild('mainContent3') mainContent3: OwlCarousel
   @ViewChild('serviceSlider') serviceSlider: OwlCarousel
-  @ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map;
+  filterAttr: string = "Select";
+  filterValue: string = '';
+  filteredData: Room[] = [];
+  sortedData: Room[] = [];
+  galleryImage1: Image[];
+  galleryImage2: Image[];
+  galleryImage3: Image[];
+  galleryImage4: Image[];
   title = 'inventionCenter';
   mySlideImages = [
     {
@@ -201,6 +219,481 @@ export class AppComponent {
     'https://www.atlconventioncenter.com/hubfs/_img/catering-pop.jpg',
     'https://www.atlconventioncenter.com/hubfs/_img/catering-on.jpg',
   ]
+  roomData = [
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Full 100 Area',
+      type: 'Meeting Room',
+      theatre: 0,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 510,
+      size: 9762,
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Pre-Function Area A',
+      type: 'Meeting Room',
+      theatre: 0,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 160,
+      size: 3077
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Pre-Function Area B',
+      type: 'Meeting Room',
+      theatre: 0,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 100,
+      size: 2625
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 E',
+      type: 'Meeting Room',
+      theatre: 78,
+      classroom2: 32,
+      classroom3: 48,
+      banquet: 60,
+      size: 960
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 F',
+      type: 'Meeting Room',
+      theatre: 78,
+      classroom2: 32,
+      classroom3: 48,
+      banquet: 60,
+      size: 1003
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 G',
+      type: 'Meeting Room',
+      theatre: 95,
+      classroom2: 42,
+      classroom3: 63,
+      banquet: 70,
+      size: 1192
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 H',
+      type: 'Meeting Room',
+      theatre: 78,
+      classroom2: 32,
+      classroom3: 48,
+      banquet: 60,
+      size: 905
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 I',
+      type: 'Meeting Room',
+      theatre: 60,
+      classroom2: 22,
+      classroom3: 33,
+      banquet: 50,
+      size: 1221
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 I - K',
+      type: 'Meeting Room',
+      theatre: 200,
+      classroom2: 70,
+      classroom3: 105,
+      banquet: 150,
+      size: 3651
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Full 100 Area',
+      type: 'Meeting Room',
+      theatre: 0,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 510,
+      size: 9762
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 J',
+      type: 'Meeting Room',
+      theatre: 60,
+      classroom2: 16,
+      classroom3: 24,
+      banquet: 40,
+      size: 929
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 K',
+      type: 'Meeting Room',
+      theatre: 78,
+      classroom2: 32,
+      classroom3: 48,
+      banquet: 60,
+      size: 1501
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 L',
+      type: 'Meeting Room',
+      theatre: 60,
+      classroom2: 24,
+      classroom3: 36,
+      banquet: 60,
+      size: 845
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 L - N',
+      type: 'Meeting Room',
+      theatre: 85,
+      classroom2: 36,
+      classroom3: 54,
+      banquet: 150,
+      size: 2450
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 M',
+      type: 'Meeting Room',
+      theatre: 50,
+      classroom2: 18,
+      classroom3: 27,
+      banquet: 40,
+      size: 915
+    },
+    {
+      building: 1,
+      floor: 1,
+      desc: 'Room 100 N',
+      type: 'Meeting Room',
+      theatre: 40,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 40,
+      size: 690
+    },
+    {
+      building: 1,
+      floor: 2,
+      desc: '',
+      type: 'Exhibit Hall',
+      theatre: 0,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 0,
+      size: 96000
+    },
+    {
+      building: 2,
+      floor: 1,
+      desc: '',
+      type: 'Exhibit Hall',
+      theatre: 3040,
+      classroom2: 1800,
+      classroom3: 2200,
+      banquet: 3040,
+      size: 55000
+    },
+    {
+      building: 2,
+      floor: 2,
+      desc: '',
+      type: 'Exhibit Hall',
+      theatre: 3040,
+      classroom2: 1800,
+      classroom3: 2200,
+      banquet: 3040,
+      size: 55000
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: '',
+      type: 'Exhibit Hall',
+      theatre: 3040,
+      classroom2: 1800,
+      classroom3: 2200,
+      banquet: 3040,
+      size: 55000
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 A',
+      type: 'Meeting Room',
+      theatre: 120,
+      classroom2: 56,
+      classroom3: 84,
+      banquet: 60,
+      size: 1732
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 ABC',
+      type: 'Meeting Room',
+      theatre: 375,
+      classroom2: 150,
+      classroom3: 225,
+      banquet: 160,
+      size: 4320
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 B',
+      type: 'Meeting Room',
+      theatre: 140,
+      classroom2: 60,
+      classroom3: 90,
+      banquet: 70,
+      size: 1911
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 C',
+      type: 'Meeting Room',
+      theatre: 75,
+      classroom2: 30,
+      classroom3: 45,
+      banquet: 40,
+      size: 677
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 D',
+      type: 'Meeting Room',
+      theatre: 100,
+      classroom2: 50,
+      classroom3: 75,
+      banquet: 50,
+      size: 1634
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 E',
+      type: 'Meeting Room',
+      theatre: 100,
+      classroom2: 50,
+      classroom3: 75,
+      banquet: 72,
+      size: 1254
+    },
+    {
+      building: 2,
+      floor: 3,
+      desc: 'Room 203 F',
+      type: 'Meeting Room',
+      theatre: 75,
+      classroom2: 34,
+      classroom3: 51,
+      banquet: 30,
+      size: 858
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: '',
+      type: 'Exhibit Hall',
+      theatre: 3040,
+      classroom2: 1600,
+      classroom3: 2400,
+      banquet: 3040,
+      size: 55000
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 A',
+      type: 'Meeting Room',
+      theatre: 182,
+      classroom2: 64,
+      classroom3: 96,
+      banquet: 110,
+      size: 1894
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 B',
+      type: 'Meeting Room',
+      theatre: 260,
+      classroom2: 96,
+      classroom3: 144,
+      banquet: 140,
+      size: 2492
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 C',
+      type: 'Meeting Room',
+      theatre: 182,
+      classroom2: 64,
+      classroom3: 96,
+      banquet: 110,
+      size: 1894
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 D',
+      type: 'Meeting Room',
+      theatre: 260,
+      classroom2: 96,
+      classroom3: 144,
+      banquet: 140,
+      size: 2492
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 DEIJ',
+      type: 'Meeting Room',
+      theatre: 1050,
+      classroom2: 460,
+      classroom3: 690,
+      banquet: 830,
+      size: 10400
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 E',
+      type: 'Meeting Room',
+      theatre: 182,
+      classroom2: 64,
+      classroom3: 96,
+      banquet: 110,
+      size: 1894
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 F',
+      type: 'Meeting Room',
+      theatre: 194,
+      classroom2: 68,
+      classroom3: 102,
+      banquet: 110,
+      size: 1973
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 FGH',
+      type: 'Meeting Room',
+      theatre: 630,
+      classroom2: 270,
+      classroom3: 400,
+      banquet: 480,
+      size: 6534
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 G',
+      type: 'Meeting Room',
+      theatre: 278,
+      classroom2: 104,
+      classroom3: 156,
+      banquet: 140,
+      size: 2588
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 H',
+      type: 'Meeting Room',
+      theatre: 194,
+      classroom2: 68,
+      classroom3: 102,
+      banquet: 110,
+      size: 1973
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 I',
+      type: 'Meeting Room',
+      theatre: 278,
+      classroom2: 104,
+      classroom3: 156,
+      banquet: 140,
+      size: 2588
+    },
+    {
+      building: 2,
+      floor: 4,
+      desc: 'Room 204 J',
+      type: 'Meeting Room',
+      theatre: 194,
+      classroom2: 68,
+      classroom3: 102,
+      banquet: 110,
+      size: 1973
+    },
+    {
+      building: 3,
+      floor: 1,
+      desc: '',
+      type: 'Exhibit Hall',
+      theatre: 0,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 0,
+      size: 90000
+    },
+    {
+      building: 3,
+      floor: 2,
+      desc: '',
+      type: 'Atrium',
+      theatre: 2000,
+      classroom2: 0,
+      classroom3: 0,
+      banquet: 1200,
+      size: 13900
+    },
+    {
+      building: 3,
+      floor: 15,
+      desc: '',
+      type: 'Penthouse Ballroom',
+      theatre: 750,
+      classroom2: 240,
+      classroom3: 360,
+      banquet: 450,
+      size: 6050.
+    },
+  ]
   mySlideOptions={items: 1, dots: false, nav: true, onChanged: this.changeEvent.bind(this)};
   mainOptions={items: 2, dots: false, nav: false};
   serviceOptions = {items: 2, dots: false, nav: false}
@@ -215,12 +708,74 @@ export class AppComponent {
   faLinkedin = faLinkedin;
   currentSlide = 0;
 
+  sortData(sort: Sort) {
+    let data = this.filteredData.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'location': return compare(a.building, b.building, isAsc) != 0 ? compare(a.building, b.building, isAsc) : compare(a.floor, b.floor, isAsc) != 0 ? compare(a.floor, b.floor, isAsc) : compare(a.desc, b.desc, isAsc);
+        case 'roomtype': return compare(a.type, b.type, isAsc);
+        case 'theatre': return compare(a.theatre, b.theatre, isAsc);
+        case 'classroom2': return compare(a.classroom2, b.classroom2, isAsc);
+        case 'classroom3': return compare(a.classroom3, b.classroom3, isAsc);
+        case 'banquet': return compare(a.banquet, b.banquet, isAsc);
+        case 'size': return compare(a.size, b.size, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
   gotoSlide(index){
     this.homepageSlider.to([index + 1, 200])
   }
 
   changeEvent(event){
     this.currentSlide = event.item.index;
+  }
+
+  filterRooms(value){
+    if(this.filterAttr == 'Theatre'){
+      this.filteredData = this.roomData.filter(data => data.theatre >= parseInt(value))
+    }
+    else if(this.filterAttr == 'Classroom2')
+      this.filteredData = this.roomData.filter(data => data.classroom2 >= parseInt(value))
+    else if(this.filterAttr == 'Classroom3')
+      this.filteredData = this.roomData.filter(data => data.classroom3 >= parseInt(value))
+    else if(this.filterAttr == 'Banquet')
+      this.filteredData = this.roomData.filter(data => data.banquet >= parseInt(value))
+    else if(this.filterAttr == 'Sq_Footage')
+      this.filteredData = this.roomData.filter(data => data.size >= parseInt(value))
+    
+    let data = this.filteredData.slice();
+    this.sortedData = data;
+  }
+
+  filterRoomsByAttr(value){
+    if(value == 'Theatre')
+      this.filteredData = this.roomData.filter(data => data.theatre >= parseInt(this.filterValue))
+    else if(value == 'Classroom2')
+      this.filteredData = this.roomData.filter(data => data.classroom2 >= parseInt(this.filterValue))
+    else if(value == 'Classroom3')
+      this.filteredData = this.roomData.filter(data => data.classroom3 >= parseInt(this.filterValue))
+    else if(value == 'Banquet')
+      this.filteredData = this.roomData.filter(data => data.banquet >= parseInt(this.filterValue))
+    else if(value == 'Sq_Footage')
+      this.filteredData = this.roomData.filter(data => data.size >= parseInt(this.filterValue))
+
+    let data = this.filteredData.slice();
+    this.sortedData = data;
+  }
+
+  showFloorplan(building, floor){
+    this.filteredData = this.roomData.filter(data => data.building == building && data.floor == floor)
+
+    let data = this.filteredData.slice();
+    this.sortedData = data;
   }
 
   getImageURL(index){
@@ -244,12 +799,54 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    var mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    this.galleryImage1 = [];
+    this.galleryImage2 = [];
+    this.galleryImage3 = [];
+    this.galleryImage4 = [];
+
+    for(let i = 0; i < this.gallery_images1.length; i++){
+      let image = new Image();
+      image.largeUrl = this.gallery_images1[i].small;
+      image.height = 3296;
+      image.width = 4934;
+      image.id = i;
+      image.size = `${image.width}x${image.height}`;
+      image.thumbUrl = this.gallery_images1[i].large;
+      this.galleryImage1.push(image);
+    }
+
+    for(let i = 0; i < this.gallery_images2.length; i++){
+      let image = new Image();
+      image.largeUrl = this.gallery_images2[i].small;
+      image.height = 3296;
+      image.width = 4934;
+      image.id = i;
+      image.size = `${image.width}x${image.height}`;
+      image.thumbUrl = this.gallery_images2[i].large;
+      this.galleryImage2.push(image);
+    }
+
+    for(let i = 0; i < this.gallery_images3.length; i++){
+      let image = new Image();
+      image.largeUrl = this.gallery_images3[i].small;
+      image.height = 3296;
+      image.width = 4934;
+      image.id = i;
+      image.size = `${image.width}x${image.height}`;
+      image.thumbUrl = this.gallery_images3[i].large;
+      this.galleryImage3.push(image);
+    }
+
+    for(let i = 0; i < this.gallery_images4.length; i++){
+      let image = new Image();
+      image.largeUrl = this.gallery_images4[i].small;
+      image.height = 3296;
+      image.width = 4934;
+      image.id = i;
+      image.size = `${image.width}x${image.height}`;
+      image.thumbUrl = this.gallery_images4[i].large;
+      this.galleryImage4.push(image);
+    }
 
     $(document).ready(function(){
       $('.head-wrap header .nav-toggle').click(function(){
@@ -312,4 +909,8 @@ export class AppComponent {
     this.serviceSlider.reInit();
     $('#contactform').append($('.hbspt-form'));
   }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : a == b ? 0 : 1) * (isAsc ? 1 : -1);
 }
