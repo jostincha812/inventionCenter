@@ -552,6 +552,7 @@ p.lead {
     float: right;
     margin-right: 5%;
     margin-top: 6px;
+    cursor: pointer;
   }
 
   .quote {

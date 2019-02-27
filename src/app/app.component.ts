@@ -738,6 +738,10 @@ export class AppComponent {
     this.currentSlide = event.item.index;
   }
 
+  resetFilter(){
+    this.filterValue = '';
+  }
+
   filterRooms(value){
     if(this.filterAttr == 'Theatre'){
       this.filteredData = this.roomData.filter(data => data.theatre >= parseInt(value))
