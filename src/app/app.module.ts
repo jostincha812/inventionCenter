@@ -7,12 +7,17 @@ import {Angular2PhotoswipeModule} from 'angular2_photoswipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSortModule} from '@angular/material/sort';
 import { AgmCoreModule } from '@agm/core';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component'
+import { MissionComponent } from './mission/mission.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    MissionComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +27,7 @@ import { AppComponent } from './app.component';
     Angular2PhotoswipeModule,
     BrowserAnimationsModule,
     MatSortModule,
+    AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBSQj5_WSgsS4l6m00PAFDfSmbJ7T7XPTk'
     })

@@ -1,0 +1,146 @@
+.one {
+  .d-flex {
+    position: relative;
+    z-index: 2;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  h1 {
+    font-size: 56px;
+    line-height: 1.07;
+    margin: 0;
+  }
+  .title-desc {
+    margin-bottom: 40px;
+  }
+  .btn {
+    margin-bottom: 20px;
+  }
+}
+h1 {
+  margin-top: 150px;
+}
+.medcadre-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  margin: 0 auto;
+}
+
+button.btn{
+  font-family: "BerninaSans", sans-serif;
+}
+
+.btn-learnmore{
+  margin-top: 40px;
+}
+
+button.anchor:focus {
+  outline: 0;
+}
+.sub-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+h1.trust-title {
+  margin-bottom: 30px;
+}
+.contributors {
+  margin-top: 50px;
+  text-align: center;
+  img {
+    margin: 30px;
+  }
+}
+@media screen and (max-width: 1220px) {
+  .one {
+    height: 600px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .medcadre-content ul {
+    max-width: 970px;
+    padding-right: 40px;
+  }
+
+  .medcadre-content ul li {
+    background: url(/assets/img/desktop__icon_quote_small@2x.png) no-repeat left
+      4px;
+    background-size: 40px 40px;
+    padding-left: 50px;
+    padding-top: 0px;
+    margin-top: 1em;
+    font-size: 24px;
+  }
+  .medcadre-content ul li:not(:first-child) {
+    background-image: none;
+  }
+  .one video {
+    position: absolute;
+    width: 100%;
+    min-height: 700px;
+  }
+  .desktop__icon_arrow {
+    cursor: pointer;
+  }
+  .mobile__icon_arrow {
+    display: none;
+  }
+}
+@media screen and (max-width: 991px) {
+  .one {
+    height: 518px;
+    video {
+      height: 518px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 1.36;
+    }
+    .title-desc {
+      font-weight: normal;
+      font-size: 18px;
+      margin: 24px 0;
+    }
+    .btn {
+      margin-bottom: 12px;
+    }
+  }
+  .desktop__icon_arrow {
+    display: none;
+  }
+  .mobile__icon_arrow {
+    cursor: pointer;
+    height: 36px;
+  }
+  h1 {
+    margin-top: 48px;
+  }
+  .sub-title {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+  .contributors {
+    img {
+      margin: 15px;
+      height: 40px;
+    }
+  }
+}
